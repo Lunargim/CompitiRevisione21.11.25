@@ -16,7 +16,7 @@ public class PlanetarySystem : MonoBehaviour
         var satellitesNumber = int.Parse(foo);
         Debug.Log(radius);
 
-        var maxDistance = 50;
+        var maxDistance = 20;
         var minScale = 5;
         var maxScale = 20;
 
@@ -26,14 +26,13 @@ public class PlanetarySystem : MonoBehaviour
             var randomNumberScale = Random.Range(minScale, maxScale);
             satellite.transform.localScale = planetScale/randomNumberScale;
         }
-        
-        
-
     }
-    
-    
-    
-    
-    
+
+    [MenuItem("Mio Menu/Planetary System %#F1", true)]
+
+    static bool CheckIfPlanetSelected()
+    {
+        return Selection.gameObjects.Length == 1;
+    }
     
 }
