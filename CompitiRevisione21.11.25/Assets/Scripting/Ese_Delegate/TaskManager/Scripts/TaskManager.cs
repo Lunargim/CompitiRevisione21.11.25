@@ -1,16 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] public List<ATask> Tasks = new List<ATask>();
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    public void OnEnable()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnDisable()
     {
         
     }
+    
 }
