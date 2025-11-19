@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public abstract class ATask
+public abstract class ATask : MonoBehaviour
 {
-    public abstract string taskId  { get; set; }
-    public abstract string taskName { get; set; }
-    public abstract string description { get; set; }
-    public abstract bool isStarted { get; set; }
-    public abstract bool isCompleted { get; set; }
+    private string _taskId { get; set; }
+    private string _taskName { get; set; }
+    public string description { get; set; }
+    private bool _isStarted { get; set; }
+    private bool _isCompleted { get; set; }
     
     public static event Action OnTaskStart;
     

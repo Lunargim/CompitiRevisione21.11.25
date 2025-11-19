@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TaskManager : MonoBehaviour
 {
-    [SerializeField] public List<ATask> Tasks = new List<ATask>();
+    [SerializeField] public List<ATask> tasks = new List<ATask>();
     [SerializeField] public TextMeshProUGUI textTask;
     [SerializeField] public Button startButton;
     [SerializeField] public Button completedButton;
@@ -15,7 +15,7 @@ public class TaskManager : MonoBehaviour
 
     public void Start()
     {
-        currentTask = Tasks[_index];
+        currentTask = tasks[_index];
         EnableButtons();
     }
     
@@ -26,20 +26,25 @@ public class TaskManager : MonoBehaviour
     
     public void Update()
     {
-        if (currentTask.isStarted)
+        //if (currentTask.isStarted)
         {
             DisplayText();
             currentTask.CheckClicks();
+        }
+
+        //if (currentTask.isCompleted)
+        {
+            GetNextTask(_index);
         }
     }
 
 
     public ATask GetNextTask(int index)
     {
-        nextTask = Tasks[index+1];
+        nextTask = tasks[index+1];
+        index++;
         return nextTask;
     }
-
 
     public void DisableButtons()
     {
@@ -55,7 +60,7 @@ public class TaskManager : MonoBehaviour
 
     public void SetStartingTask()
     {
-        currentTask.isStarted = true;
+        //currentTask.isStarted = true;
     }
 
     public void OnEnable()
