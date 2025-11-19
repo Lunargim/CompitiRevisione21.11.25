@@ -21,16 +21,11 @@ public class Task1 : ATask
         get { return false;} set { isCompleted = false; }
     }
 
-    public override event Action OnTaskStart;
-    public override event Action OnTaskCompleted;
+    public event Action OnTaskStart;
+    public event Action OnTaskCompleted;
     
     private int _counter = 0;
-
     
-    public void Update()
-    {
-        CheckClicks();
-    }
 
     public override void CheckClicks()
     {
