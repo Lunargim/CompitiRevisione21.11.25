@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class MaterialFixer
 {
@@ -16,7 +17,7 @@ public class MaterialFixer
         
         foreach (GameObject obj in Selection.gameObjects)
         {
-            if (obj.GetComponent<MeshRenderer>().material == null)
+            if (obj.GetComponent<MeshRenderer>().material == null) //|| !obj.GetComponent<MeshRenderer>().material.enableInstancing )
             {
                 objectSelected.Add(Selection.gameObjects[objectsIndex]);
                 objectsIndex++;
@@ -24,14 +25,14 @@ public class MaterialFixer
 
             if (obj.GetComponent<MeshRenderer>().material != null)
             {
-                selectedMaterial.Add(Selection.gameObjects[objectsIndex].GetComponent<Material>());
+                selectedMaterial.Add(Selection.gameObjects[colorsIndex].GetComponent<Material>());
                 colorsIndex++;
             }
         }
         
         foreach (GameObject obj in objectSelected)
         {
-           obj.gameObject.GetComponent<MeshRenderer>().material = selectedMaterial[0];
+            obj.gameObject.GetComponent<MeshRenderer>().material = selectedMaterial[0];
         }
     }
     
