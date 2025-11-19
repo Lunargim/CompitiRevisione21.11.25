@@ -21,13 +21,31 @@ public class Task1 : ATask
         get { return false;} set { isCompleted = false; }
     }
 
-    public void Start()
+    public override event Action OnTaskStart;
+    public override event Action OnTaskCompleted;
+    
+    private int _counter = 0;
+
+    
+    public void Update()
     {
-       
+        CheckClicks();
     }
 
-    public override void Click()
+    public override void CheckClicks()
     {
-        throw new NotImplementedException();
+        if (Input.GetMouseButtonDown(1))
+        {
+            _counter++;
+        }else if (!Input.GetMouseButton(1) && Input.anyKeyDown)
+        {
+            _counter= 0;
+        }
+
+        if (_counter == 3)
+        {
+            isCompleted = true;
+            OnTaskCompleted?.Invoke();
+        }
     }
 }
