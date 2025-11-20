@@ -20,22 +20,19 @@ public class MaterialFixer
             if (obj.GetComponent<MeshRenderer>().sharedMaterial == null )
             {
                 objectSelected.Add( Selection.gameObjects[objectsIndex]);
-                Debug.Log(objectSelected[objectsIndex]);
                 objectsIndex++;
             }
 
             if (obj.GetComponent<MeshRenderer>().sharedMaterial != null)
             {
                 selectedMaterial.Add(Selection.gameObjects[colorsIndex].GetComponent<MeshRenderer>().sharedMaterial);
-                Debug.Log(selectedMaterial[colorsIndex]);
                 colorsIndex++;
             }
         }
-        
+  
         foreach (GameObject obj in objectSelected)
         {
             obj.gameObject.GetComponent<MeshRenderer>().sharedMaterial = selectedMaterial[0];
-            Debug.Log("AAAAA");
         }
     }
 
