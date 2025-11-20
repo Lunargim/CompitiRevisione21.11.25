@@ -17,23 +17,52 @@ public class MaterialFixer
         
         foreach (GameObject obj in Selection.gameObjects)
         {
-            if (obj.GetComponent<MeshRenderer>().material == null) //|| !obj.GetComponent<MeshRenderer>().material.enableInstancing )
+            if (obj.GetComponent<MeshRenderer>().sharedMaterial == null )
             {
-                objectSelected.Add(Selection.gameObjects[objectsIndex]);
+                objectSelected.Add( Selection.gameObjects[objectsIndex]);
+                Debug.Log(objectSelected[objectsIndex]);
                 objectsIndex++;
             }
 
-            if (obj.GetComponent<MeshRenderer>().material != null)
+            if (obj.GetComponent<MeshRenderer>().sharedMaterial != null)
             {
-                selectedMaterial.Add(Selection.gameObjects[colorsIndex].GetComponent<Material>());
+                selectedMaterial.Add(Selection.gameObjects[colorsIndex].GetComponent<MeshRenderer>().sharedMaterial);
+                Debug.Log(selectedMaterial[colorsIndex]);
                 colorsIndex++;
             }
         }
         
         foreach (GameObject obj in objectSelected)
         {
-            obj.gameObject.GetComponent<MeshRenderer>().material = selectedMaterial[0];
+            obj.gameObject.GetComponent<MeshRenderer>().sharedMaterial = selectedMaterial[0];
+            Debug.Log("AAAAA");
         }
     }
-    
+
+    [MenuItem("Mio Menu/Planetary System %#F1", true)]
+
+    static bool CheckMaterial()
+    {
+        bool materialMissing = false;
+        bool materialFound = false;
+        foreach (GameObject obj in Selection.gameObjects)
+        {
+            if (obj.GetComponent<MeshRenderer>().sharedMaterial == null)
+            {
+                materialMissing = true;
+            }
+
+            if (obj.GetComponent<MeshRenderer>().sharedMaterial != null)
+            {
+                materialFound = true;
+            }
+        }
+
+        if (!materialMissing && materialFound)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
