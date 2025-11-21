@@ -4,28 +4,23 @@ using UnityEngine;
 public class Deserialization : MonoBehaviour
 {
     public MyData data;
-    private void Awake()
+    private void Start()
     {
         Load();
     }
 
     public void Load()
     {
-        string jsonString = File.ReadAllText("C:/Users/loryl/Desktop/Esercizio Deserializzazione.txt");
-        JsonUtility.FromJsonOverwrite(jsonString, data);
+        if(File.Exixts(jsonString))
+        {
+            string jsonString = File.ReadAllText("C:/Users/loryl/Desktop/Esercizio Deserializzazione.txt");
+            Mydata = JsonUtility.FromJsonOverwrite(jsonString, data);
+            
+            //JsonConvert.DeserializeObject<MyData>(jsonString);
+        }else
+        {
+            Debug.Log("File Json not found");
+        }
         
-        //NEWTON 
-        // data = JsonConvert.DeserializeObject<MyData>(jsonString);
-    }
-    
-    [ContextMenu("Save File")]
-    public void Save()
-    {
-        string jsonString = JsonUtility.ToJson(data, true);
-        
-        //NEWTON
-        //string jsonString1 = JsonConvert.SerializeObject(data, Formatting.Indented);
-        
-        File.WriteAllText("C:/Users/loryl/Desktop/Esercizio Deserializzazione.txt", jsonString);
     }
 }
