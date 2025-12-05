@@ -1,26 +1,23 @@
 using UnityEditor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
+
 
 public class CInematicPreviewWindow : EditorWindow
 {
-    
     private static CinematicCameraMovementData _movementData;
 
-
-    private void OnGUI()
+    [MenuItem("Tools/CinematicPreview")]
+    private void ShowWindow()
     {
         GetWindow<CInematicPreviewWindow>();
 
-        if( _movementData == null)
-        {
-           var window = GetWindow<CInematicPreviewWindow>();
-            window.Close();
-        }
+    }
 
-        // qui mettiamo i metodi
+    public void OnGUI()
+    {
+        ShowWindow();
 
-
+        //qua vanno i metodi
 
     }
 
