@@ -1,6 +1,12 @@
+using UnityEditor;
 using UnityEngine;
 
-public class CinematicPreviewCustomEditor
+[CustomEditor(typeof(CInematicPreviewWindow))]
+public class CinematicPreviewCustomEditor : Editor
 {
-    
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+    }
+
 }

@@ -11,6 +11,12 @@ public class CInematicPreviewWindow : EditorWindow
     {
         GetWindow<CInematicPreviewWindow>();
 
+        if (_movementData == null)
+        {
+            var window = GetWindow<CInematicPreviewWindow>();
+            window.Close();
+        }
+
     }
 
     public void OnGUI()
