@@ -5,6 +5,7 @@ public class MaterialSetter : MonoBehaviour
     [SerializeField] 
     private MeshRenderer _meshRenderer;
     
+    [Header("This is a header")]
     [ContextMenuItem("Set Material", nameof(SetMaterial))]
     public bool _setMat;
     
