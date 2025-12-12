@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class DeckWizard : EditorWindow
     private GUIStyle _deckButtonStyle;
     
     private float ArrowsColumnWidth => 100;
-    private float ColumnWidth => (Screen.width - 36 - ArrowsColumnWidth) / 3f;
+    private float ColumnWidth => (position.width - 30 - ArrowsColumnWidth) / 3f;
 
     private const float COLUMNS_SPACING = 8; 
     
@@ -41,6 +42,7 @@ public class DeckWizard : EditorWindow
         
         FetchAssets(ref _allCards);
         _filteredCards = _allCards;
+        
     }
 
     private void OnGUI()
@@ -222,6 +224,20 @@ public class DeckWizard : EditorWindow
     {
         GUILayout.BeginVertical(GUILayout.Width(ArrowsColumnWidth), GUILayout.ExpandHeight(true));
         GUILayout.Label("Arrows");
+        GUILayout.Space(150);
+        if(_selectedCard != null && _selectedDeck!=null)
+        {
+            if (GUILayout.Button(">",  GUILayout.ExpandHeight(true)))
+            {
+                Debug.Log("bb");
+            }  
+        }
+            if (GUILayout.Button("<",  GUILayout.ExpandHeight(true)))
+            {
+                Debug.Log("aa");
+            } 
+        
+        GUILayout.Space(150);
         GUILayout.EndVertical();
     }
     
