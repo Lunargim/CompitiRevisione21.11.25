@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea25cf36f8c553a48b1f7ec08787e1d0, type: 3}
-  m_Name: item
+  m_Name: Lancia
   m_EditorClassIdentifier: 
   name: 
   icon: {fileID: 0}
