@@ -7,24 +7,29 @@ public class ItemWindow : EditorWindow
     private List<ItemSO> _items = new List<ItemSO>();
     private Vector2 _scrollPosition;
     private ItemSO _selectedItem;
+    private ItemSO _newItemSO;
+    
 
     [MenuItem("Tools/Item Window")]
 
     public static void ShowWindow()
     {
-        GetWindow<ItemWindow>("Item Window");
+        var window = GetWindow<ItemWindow>("Item Window");
+        window.minSize = new Vector2(900, 400);
     }
 
     public void OnFocus()
     {
         FetchAssets(ref _items);
-        
-        
     }
 
     public void OnGUI()
     {
+        GUILayout.BeginHorizontal();
         DrawScollView();
+        GUILayout.Space(10);
+        DrawItem();
+        GUILayout.EndHorizontal();
     }
 
 
@@ -39,28 +44,23 @@ public class ItemWindow : EditorWindow
             assets.Add(asset);
         }
     }
-
     private void DrawScollView()
     {
-        GUILayout.BeginVertical();
-        GUILayout.Label("Items in Project:", GUILayout.Width(50));
-        GUILayout.Space(50);
-        _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, false, true);
+        //GUILayout.BeginVertical();
+        //GUILayout.Label("Items in Project:", GUILayout.Width(50)); // NON SO PERCHE MI FA UNO SPAZIO STRANO SE LO METTO
+        _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, false, true, GUILayout.ExpandHeight(true), GUILayout.Width(200) );
         foreach (var item in _items)
         {
             DrawItemList(item);
         }
-
         GUILayout.EndScrollView();
-        GUILayout.EndVertical();
+        //GUILayout.EndVertical();
     }
-
-
     private void DrawItemList(ItemSO item)
     {
         var prevBackground = GUI.backgroundColor;
         
-        if(GUILayout.Button(item.name, GUILayout.Width(50)))
+        if(GUILayout.Button(item.name, GUILayout.Width(200)))
         {
             GUI.backgroundColor = Color.green;
             _selectedItem =  item;
@@ -68,5 +68,89 @@ public class ItemWindow : EditorWindow
 
         GUI.backgroundColor = prevBackground;  
     }
-    
+
+    private void DrawItem()
+    {
+        if (_selectedItem != null)
+        {
+            _newItemSO = ScriptableObject.CreateInstance<ItemSO>();
+            GUILayout.BeginVertical();
+            GUILayout.Label("Selected item:");
+            GUILayout.Space(10);
+            DrawItemName();
+            DrawItemIcon();
+            DrawItemStats();
+            GUILayout.EndVertical();
+        }
+    }
+
+    private void DrawItemName()
+    {
+        _newItemSO.name = EditorGUILayout.TextField(_selectedItem.name, GUILayout.Width(100));
+    }
+
+    private void DrawItemIcon()
+    {
+        GUILayout.Box(_selectedItem.icon, GUILayout.Width(_selectedItem.icon.width), GUILayout.Height(_selectedItem.icon.height));
+    }
+
+    private void DrawItemStats()
+    {
+        GUILayout.BeginVertical();
+        _newItemSO.value = EditorGUILayout.FloatField("Value", _selectedItem.value, GUILayout.Width(200));
+        GUILayout.Space(10);
+        DrawItemWeight();
+        GUILayout.Space(10);
+        DrawDimensions();
+        GUILayout.EndVertical();
+    }
+
+    private void DrawItemWeight()
+    {
+        GUILayout.BeginHorizontal();
+        _newItemSO.weight = EditorGUILayout.FloatField("Weight", _selectedItem.weight, GUILayout.Width(200));
+        GUILayout.Space(10);
+        GUILayout.Label(DrawWeightLabel(), GUILayout.Width(1000));
+        GUILayout.EndHorizontal();
+    }
+
+    private string DrawWeightLabel()
+    {
+        var weightType = "null";
+        GUILayout.BeginHorizontal();
+        if (_newItemSO.weight <= 5)
+        {
+            weightType = "Light";
+        }else if (_newItemSO.weight <= 10)
+        {
+            weightType = "Medium";
+        }
+        else
+        {
+            weightType = "Heavy";
+        }
+        GUILayout.EndHorizontal();
+        
+        return weightType;
+    }
+
+    private void DrawDimensions()
+    {
+        _newItemSO.dimensions = EditorGUILayout.Vector2IntField("", _selectedItem.dimensions, GUILayout.Width(200));
+        GUILayout.Space(10);
+        
+        GUILayout.BeginVertical();
+        for (int y = 0; y < _newItemSO.dimensions.y; y++)
+        {
+            GUILayout.BeginHorizontal();
+            for (int x = 0; x < _newItemSO.dimensions.x; x++)
+            {
+                GUILayout.Button("",GUILayout.Width(30), GUILayout.Height(30));
+                
+            }
+            GUILayout.EndHorizontal();
+        }
+        GUILayout.EndVertical();
+        
+    }
 }
