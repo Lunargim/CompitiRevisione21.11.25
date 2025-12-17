@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     public string name;
-    public Sprite icon;
+    public Texture icon;
     public float value;
     public float weight;
     public Vector2Int dimensions;
