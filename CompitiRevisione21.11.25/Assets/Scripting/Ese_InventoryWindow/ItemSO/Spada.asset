@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea25cf36f8c553a48b1f7ec08787e1d0, type: 3}
   m_Name: Spada
   m_EditorClassIdentifier: 
-  name: 
-  icon: {fileID: 0}
-  value: 0
-  weight: 0
-  dimensions: {x: 0, y: 0}
-  maxDurability: 0
+  name: Spada
+  icon: {fileID: 2800000, guid: 55b5d7a91478a0c46a681a2de34a3112, type: 3}
+  value: 4
+  weight: 6
+  dimensions: {x: 2, y: 4}
+  maxDurability: 60

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea25cf36f8c553a48b1f7ec08787e1d0, type: 3}
   m_Name: Lancia
   m_EditorClassIdentifier: 
-  name: 
-  icon: {fileID: 0}
-  value: 0
-  weight: 0
-  dimensions: {x: 0, y: 0}
-  maxDurability: 0
+  name: Lancia
+  icon: {fileID: 2800000, guid: fb2e1fd4d0ef2a144a17687fa9a5baeb, type: 3}
+  value: 5
+  weight: 12
+  dimensions: {x: 1, y: 4}
+  maxDurability: 30
