@@ -8,6 +8,7 @@ public class ItemSO : ScriptableObject
     public float value;
     public float weight;
     public Vector2Int dimensions;
+    public int currentDurability;
     public int maxDurability;
 
 }

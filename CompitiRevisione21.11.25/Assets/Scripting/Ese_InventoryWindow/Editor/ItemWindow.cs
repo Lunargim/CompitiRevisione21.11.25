@@ -101,7 +101,9 @@ public class ItemWindow : EditorWindow
         GUILayout.Space(10);
         DrawItemWeight();
         GUILayout.Space(10);
-        DrawDimensions();
+        DrawItemDimensions();
+        GUILayout.Space(10);
+        DrawItemDurability();
         GUILayout.EndVertical();
     }
 
@@ -134,11 +136,19 @@ public class ItemWindow : EditorWindow
         return weightType;
     }
 
-    private void DrawDimensions()
+    private void DrawItemDimensions()
     {
-        _newItemSO.dimensions = EditorGUILayout.Vector2IntField("", _selectedItem.dimensions, GUILayout.Width(200));
-        GUILayout.Space(10);
-        
+        GUILayout.BeginHorizontal(GUILayout.Width(200));
+        GUILayout.Label("Dimensions:");
+        GUILayout.Space(50);
+        _newItemSO.dimensions = EditorGUILayout.Vector2IntField("", _selectedItem.dimensions, GUILayout.Width(100));
+        GUILayout.Space(50);
+        GUILayout.EndHorizontal();
+        DrawButtonsDimensions();
+    }
+
+    private void DrawButtonsDimensions()
+    {
         GUILayout.BeginVertical();
         for (int y = 0; y < _newItemSO.dimensions.y; y++)
         {
@@ -146,11 +156,28 @@ public class ItemWindow : EditorWindow
             for (int x = 0; x < _newItemSO.dimensions.x; x++)
             {
                 GUILayout.Button("",GUILayout.Width(30), GUILayout.Height(30));
-                
             }
             GUILayout.EndHorizontal();
         }
         GUILayout.EndVertical();
-        
     }
+
+    private void DrawItemDurability()
+    {
+        GUILayout.BeginHorizontal(GUILayout.Width(100));
+        _newItemSO.currentDurability = EditorGUILayout.IntField("Durability", _selectedItem.currentDurability, GUILayout.Width(200));
+        GUILayout.Label("/");
+        _newItemSO.maxDurability =  EditorGUILayout.IntField(_selectedItem.maxDurability);
+        GUILayout.EndHorizontal();
+        DrawDurabilityBar();
+
+    }
+
+    private void DrawDurabilityBar()
+    {
+        GUILayout.BeginVertical();
+        EditorGUI.ProgressBar(new Rect(210, 340, 275, 20), ((_selectedItem.currentDurability/_selectedItem.maxDurability)), _newItemSO.currentDurability.ToString());
+        GUILayout.EndVertical();
+    }
+    
 }
