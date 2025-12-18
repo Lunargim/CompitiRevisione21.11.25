@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea25cf36f8c553a48b1f7ec08787e1d0, type: 3}
-  m_Name: Spada
+  m_Name: Lancia
   m_EditorClassIdentifier: 
-  name: Spada
-  icon: {fileID: 2800000, guid: 55b5d7a91478a0c46a681a2de34a3112, type: 3}
-  value: 4
-  weight: 6
-  dimensions: {x: 2, y: 4}
-  maxDurability: 60
+  name: Lancia
+  icon: {fileID: 2800000, guid: fb2e1fd4d0ef2a144a17687fa9a5baeb, type: 3}
+  value: 5
+  weight: 12
+  dimensions: {x: 1, y: 4}
+  currentDurability: 15
+  maxDurability: 30
