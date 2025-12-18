@@ -21,7 +21,6 @@ public class MapEditorWizard : EditorWindow
         window.minSize = new Vector2(900, 400);
     }
     
-
     private void OnGUI()
     {
         DrawSizeMap();
